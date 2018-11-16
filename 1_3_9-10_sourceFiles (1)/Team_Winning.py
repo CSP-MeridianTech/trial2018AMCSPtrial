@@ -6,9 +6,9 @@
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'team1'
-strategy_name = 'Backstabbing'
-strategy_description = 'Winning.'
+team_name = 'E1'
+strategy_name = 'Backstabbers'
+strategy_description = 'Win.'
     
 def move(my_history, their_history, my_score, their_score):
     '''Make my move based on the history with this player.
