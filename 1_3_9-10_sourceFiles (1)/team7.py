@@ -6,9 +6,11 @@
 #     move: A function that returns 'c' or 'b'
 ####
 
-team_name = 'The name the team gives to itself' # Only 10 chars displayed.
-strategy_name = 'The name the team gives to this strategy'
-strategy_description = 'How does this strategy decide?'
+import random
+
+team_name = 'team7' # Only 10 chars displayed.
+strategy_name = 'Omark'
+strategy_description = 'Prepare to lose, I never said who was going to lose.'
     
 def move(my_history, their_history, my_score, their_score):
     ''' Arguments accepted: my_history, their_history are strings.
@@ -25,8 +27,29 @@ def move(my_history, their_history, my_score, their_score):
     
     # Analyze my_history and their_history and/or my_score and their_score.
     # Decide whether to return 'c' or 'b'.
+    outcome_pos = ['c', 'c', 'c', 'b']
+    outcome_neg = ['b', 'b', 'b', 'c']
+    outcome_neg_more = ['b', 'b', 'b', 'b', 'b', 'c']
+    outcome_neg_very = ['b', 'b']
+    outcomes = ['c','b']
+    score_threshold = 5000
+    percent = float(my_score/score_threshold)
     
-    return 'c'
+    
+    
+    if len(their_history) < 4:
+        return random.choice(outcomes)
+    else:
+        if percent > 0:
+            return random.choice(outcome_pos)
+        if percent < 0:
+            if percent <= -0.1 and percent > -0.2:
+                return random.choice(outcome_neg)
+            if percent <= -0.2 and percent > -0.3:
+                return random.choice(outcome_neg_more)
+            if percent <= -0.3:
+                return random.choice(outcome_neg_very)
+      
 
     
 def test_move(my_history, their_history, my_score, their_score, result):
